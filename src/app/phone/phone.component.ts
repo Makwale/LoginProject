@@ -25,10 +25,7 @@ export class PhoneComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		//this.windowRef = this.authService.getWindowRef()
 	}
-
-
 
 	sendOTP(){
 
@@ -38,17 +35,7 @@ export class PhoneComponent implements OnInit {
     	}).catch(error => {
     		this.error = error;
      
-    	});/*
-		this.windowRef.recaptchaVerifier = new auth.RecaptchaVerifier(,
-		});*/
-		/*this.windowRef.recaptchaVerifier.render();*/
-		/*this.angularFrAuth.signInWithPhoneNumber(this.phoneControl.value, this.windowRef.recaptchaVerifier)
-    		.then(confirmationResult => {
-    			this.confirmationResult = confirmationResult;
-      			console.log(confirmationResult)
-    	}).catch(function (error) {
-     
-    	});*/
+    	});
 	}
 
 	getErrorMessage(){
