@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LoginPhone</title>
+
+	<style type="text/css">
+		#bg{
+			background-color: rgba(169, 169,169,0)/*#F0F0F0*/;
+			height: 750px;
+		}
+
+		#blur{
+			background-color: rgba(0, 0, 0, .3);
+			height: inherit;
+			text-align: center;
+		}
+
+		#container{
+			background-color: rgba(255, 255, 255, 1);
+			height: 60%;
+			width: 30%;
+			position: relative;
+			top: 10%;
+			margin: auto;
+			border-radius: 5px;
+		}
+
+		#bg #blur #container form {
+			margin-top: 3px;
+		}
+
+		#bg #blur #container form .label{
+			color: #000;
+		}
+
+		#bg #blur #container form .input, #verify, #cancel, #send{
+			width: 90%;
+		}
+
+		#bg #blur #container form #verify, #cancel, #send{
+			margin-bottom: 10px;
+		}
+
+		#bg #blur #container form #verify{
+			background-color: lightgreen;
+		}
+
+		#bg #blur #container{
+			padding-top: 20px;
+		}
+
+		
+		#bg #blur #container #error{
+			color: red;
+			background-color: pink;
+			width: 90%;
+			margin: auto;
+			border-radius: 5px;
+			border: 1px solid red;
+		}
+
+		#recaptcha-container{
+			margin-left: 5%;
+		}	
+
+	</style>
+		
+</head>
+<body>
+
+	<div id="bg">
+
+		<div id="blur">
+			<div id="container">
+				<div id="error" *ngIf="error">{{getErrorMessage()}}</div>
+				<form>
+					<mat-form-field class="input" appearance="outline">
+									<mat-label class="label">Phone Number</mat-label>
+									<input [formControl]="phoneControl" matInput type="text" name="" placeholder="Your Phone Number">
+									<mat-hint>E.g(+27654453437)</mat-hint>
+					</mat-form-field>
+
+					<div id="recaptcha-container"></div>
+					<button id="send" color="primary" mat-button mat-raised-button (click)="sendOTP()">SUBMIT</button>
+					<br>
+					<mat-form-field class="input" appearance="outline">
+									<mat-label class="label">OTP</mat-label>
+									<input [formControl]="otpControl" matInput type="text" name="" placeholder="One Time Password">
+					</mat-form-field>
+					<br>
+
+					<button id="verify" mat-button mat-raised-button (click)="verifyOTP()">VERIFY OTP</button>
+
+					<button id="cancel" color="warn" mat-button mat-raised-button (click)="cancel()">CANCEL</button>
+
+				</form>
+				
+			</div>
+		</div>
+	
+	</div>
+
+	
+
+</body>
+</html>

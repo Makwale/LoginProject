@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<style type="text/css">
+		#bg{
+			background-color: rgba(169, 169,169,0)/*#F0F0F0*/;
+			height: 750px;
+		}
+
+		#blur{
+			background-color: rgba(0, 0, 0, .3);
+			height: inherit;
+			text-align: center;
+		}
+
+		#container{
+			background-color: rgba(255, 255, 255, 1);
+			height: 65%;
+			width: 30%;
+			position: relative;
+			top: 10%;
+			margin: auto;
+			border-radius: 5px;
+		}
+
+		#bg #blur #container form .label{
+			color: #000;
+		}
+
+		#bg #blur #container form .input, #signin{
+			width: 90%;
+		}
+
+		#bg #blur #container form #signin{
+			background-color: lightgreen;
+		}
+
+
+		#bg #blur #container form #phone{
+			background-color: gray;
+			color: white;
+		}
+
+		#bg #blur #container form #facebook{
+			background-color: rgba(39, 64, 139, .9); /*#27408B;*/
+			color: #fff;
+		}
+
+		#bg #blur #container form #facebook img{
+			height: 27px;
+			width: 15px;
+		}
+
+		#bg #blur #container form #google img{
+			height: 27px;
+			width: 25px;
+		}
+
+
+		#bg #blur #container form .social{
+			margin-left: 10px;
+		}
+
+		#bg #blur #container form #div{
+			margin-top: 8px;
+			margin-bottom: 8px;
+		}
+
+		#bg #blur #container form {
+			margin-top: 3px;
+		}
+
+
+		#bg #blur #container img{
+			width: 90px;
+			height: 80px;
+		}
+
+		#bg #blur #container #error{
+			color: red;
+			background-color: pink;
+			width: 90%;
+			margin: auto;
+			border-radius: 5px;
+			border: 1px solid red;
+		}	
+
+	</style>
+</head>
+<body>
+
+
+	<div id="bg">
+
+		<div id="blur">
+			<div id="container">
+				<h1>LOGIN</h1>
+				<img src="../assets/acc.jpg">
+				<div id="error" *ngIf="error">{{getErrorMessage()}}</div>
+				<form >
+					<mat-form-field class="input" appearance="outline">
+						<mat-label class="label">Email</mat-label>
+						<input [errorStateMatcher]="emailError" required [formControl]="emailControl" matInput type="email" name="" placeholder="Your Email">
+						<mat-error *ngIf="emailControl.hasError('required')">Email is <strong>required</strong></mat-error>
+						<mat-error *ngIf="emailControl.hasError('email')"><strong>Invalid</strong> email format</mat-error>
+					</mat-form-field>
+					
+					<br>
+
+					<mat-form-field class="input" appearance="outline">
+						<mat-label class="label">Password</mat-label>
+						<input [errorStateMatcher]="passwordError" required [formControl]="passwordControl" matInput type="password" name="" placeholder="Your Password">
+						<mat-error *ngIf="passwordControl.hasError('required')">Password is <strong>required</strong></mat-error>
+					</mat-form-field>
+
+					<button [disabled]="emailControl.invalid || passwordControl.invalid" id="signin" mat-button mat-raised-button (click)="logingWithEmailAndPassword()">LOGIN</button>
+					<div id="div">or SignIn with</div>
+
+					<button id="google" class="social" mat-button mat-raised-button (click)="logingWithGoogle()"><img src="../assets/google.png">OOGLE</button>
+
+					<button id="facebook" class="social" mat-button mat-raised-button (click)="logingWithFacebook()"><img src="../assets/facebook.jpg">ACEBOOK</button>
+
+					<button id="phone" class="social"  mat-button mat-raised-button (click)="logingWithPhone()">PHONE NO</button>
+				</form>
+				
+			</div>
+		</div>
+	
+	</div>
+
+</body>
+</html>
+
+
