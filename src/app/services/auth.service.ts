@@ -4,19 +4,23 @@ import { AngularFirestore,
 		 AngularFirestoreCollection,
 	 	 AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { auth } from 'firebase/app';
+import { auth } from 'firebase';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+	logingState = false;
 	windowRef;
 	constructor(private angularFrAuth: AngularFireAuth) { }
 
 	async logingWithEmailAndPassword(email, password){
 		return this.angularFrAuth.signInWithEmailAndPassword ( email, password);
+	}
+
+	async creatUserWithEmailAndPassword(email, password){
+		return this.angularFrAuth.createUserWithEmailAndPassword ( email,  password);
 	}
 
 	async logingWithGoogle(){
@@ -46,6 +50,14 @@ export class AuthService {
 
 	confirmOTP(otp, confirmationResult){
 		return confirmationResult.confirm(otp);
+	}
+
+	setLoginState(state){
+		this.logingState = state;
+	}
+
+	getLoginState(){
+		return this.logingState;
 	}
 		
 

@@ -3,13 +3,13 @@
 <head>
 	<title>Login</title>
 	<style type="text/css">
+
 		#bg{
-			background-color: rgba(169, 169,169,0)/*#F0F0F0*/;
-			height: 750px;
+			height: 600px;
+			margin: auto;
 		}
 
 		#blur{
-			background-color: rgba(0, 0, 0, .3);
 			height: inherit;
 			text-align: center;
 		}
@@ -17,9 +17,10 @@
 		#container{
 			background-color: rgba(255, 255, 255, 1);
 			height: 65%;
-			width: 30%;
+			width: 400px;
 			position: relative;
-			top: 10%;
+			top: 25%;
+			left: 20%;
 			margin: auto;
 			border-radius: 5px;
 		}
@@ -86,17 +87,46 @@
 			border: 1px solid red;
 		}	
 
+		#bg #blur #register{
+			width: 400px;
+			float: left;
+			position: relative;
+			top: 32%;
+			left: 20%;
+		}
+
+		#bg #blur #register h1{
+			font-size: 250%;
+			color: #585353
+		}
+
+		#bg #blur #register button{
+			background-color: black;
+			color: white;
+		}
+
+		#bg #blur .parent{
+			float:  left;
+		}
+
 	</style>
 </head>
 <body>
 
+	<app-navigation></app-navigation>
 
 	<div id="bg">
 
 		<div id="blur">
-			<div id="container">
-				<h1>LOGIN</h1>
-				<img src="../assets/acc.jpg">
+
+			<div id="register">
+				<h1>Don't Have Account?</h1>
+				<button mat-flat-button routerLink="/reg">Create Account</button>
+			</div>
+
+			<div id="container" class="parent">
+				<h1 style="color: #585353"><b>Login</b></h1>
+				<!-- <img src="../assets/acc.jpg"> -->
 				<div id="error" *ngIf="error">{{getErrorMessage()}}</div>
 				<form >
 					<mat-form-field class="input" appearance="outline">
@@ -110,7 +140,7 @@
 
 					<mat-form-field class="input" appearance="outline">
 						<mat-label class="label">Password</mat-label>
-						<input [errorStateMatcher]="passwordError" required [formControl]="passwordControl" matInput type="password" name="" placeholder="Your Password">
+						<input (keyup.enter)="logingWithEmailAndPassword()" [errorStateMatcher]="passwordError" required [formControl]="passwordControl" matInput type="password" name="" placeholder="Your Password">
 						<mat-error *ngIf="passwordControl.hasError('required')">Password is <strong>required</strong></mat-error>
 					</mat-form-field>
 

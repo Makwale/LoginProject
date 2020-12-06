@@ -1,0 +1,49 @@
+<mat-toolbar>
+    <span>ADMINISTRATION</span>
+ </mat-toolbar>
+
+<div style="width: 960px; margin: auto;">
+
+<div style="display: inline; width: 350px; float: left;">
+	<h1>LIST OF PRODUCTS</h1>
+	<li style="list-style-type: none;" *ngFor="let product of listProducts">
+		<div><img style="height: 150px; width: 150px;" src={{product.data.url}}></div>
+		<div>
+			<span>{{product.data.name}}     <strong>{{product.data.price | currency:'R'}}</strong></span>
+		</div> 
+	</li>
+
+</div>
+
+<div style="display: inline; width: 350px; float: left; margin-left: 10px;">
+	<h1>ADD PRODUCT</h1>
+	<form>
+		<mat-form-field appearance="legacy">
+			<mat-label>Product Name</mat-label>
+			<input [formControl]="prodNameControl" matInput type="text" >
+		</mat-form-field>
+
+		<mat-form-field appearance="legacy">
+			<mat-label>Product Price</mat-label>
+			<input [formControl]="prodPriceControl" matInput type="text">
+		</mat-form-field>
+
+		  <mat-form-field appearance="legacy">
+		    <mat-label>Category</mat-label>
+		    <mat-select [formControl]="prodCatControl" name="food">
+		      <mat-option value="Cosmetic">
+		       	Cosmetic
+		      </mat-option>
+
+		      <mat-option value="Makeup">
+		       	Makeups
+		      </mat-option>
+		    </mat-select>
+		  </mat-form-field>
+
+		<input type="file" (change)="addProduct($event)" >
+	</form>
+
+</div>
+
+</div>

@@ -2,42 +2,268 @@
 <html>
 <head>
 	<title>Login</title>
+
 	<style type="text/css">
-		#bg{
-			background-image: url(../assets/bg.jpg)/*#F0F0F0*/;
-			height: 750px;
+		#parent_intro{
+			background-image: url("../assets/bg.jpg");
+			height: 600px;
 		}
 
-		#blur{
-			background-color: rgba(0, 0, 0, .3);
+		.sub_parent{
+			background-color: rgba(253, 234, 237, .75);
 			height: inherit;
 			text-align: center;
 		}
 
-		#bg #blur h1{
-			color: white;
+		.welcome{
+			width: 470px;
+			display: inline-block;
+			margin-left: 10px;
+			margin-top: 300px;
+		}
+
+		#intro{
+			width: 1000px;
+			margin: auto;
+			text-align: center;
+		}
+
+		#parent_intro .sub_parent #intro .welcome h1{
 			font-size: 300%;
-			position: relative;
-			top: 30%;
+			line-height: 50px;
+			color: #585353;
+		}
+
+		#parent_intro .sub_parent #intro .welcome p{
+			font-size: 120%;
+			color: #585353
+		}
+
+		#parent_intro .sub_parent #intro .welcome button{
+			background: black;
+			color: white;
+		}
+
+		#about{
+			background-color: rgba(253, 234, 237, .75);
+			float: left;
+			width: 100%;
+			height: 300px;
+		}
+
+		#parent_intro #about #who{
+			width: 300px;
+			float: left;
+			height: 100px;
+			margin-top: 60px;
+			color: #585353
+		}
+
+		#parent_intro #about #wrapper{
+			width: 900px;
+			margin: auto;
+		}
+
+		#parent_intro #about #who span{
+			font-size: 250%;
+		}
+	
+		#parent_intro #about #summ{
+			width: 600px;
+			float: left;
+			margin-top: 60px;
+			text-align: center;
+			color: #585353
+		}
+
+		#parent_intro #about #summ button{
+			background: black;
+			color: white;
+		}
+
+		.items{
+			clear: left;
+			width: 960px;
+			margin: 30px auto;
+			padding: 40px;
+
+		}
+
+	 	.card img{
+			width: 180px;
+			height: 180px;
+		}
+
+		.card{
+			width: 200px;
+			display: inline-block;
+			margin-left: 20px;
+			margin-top: 20px;
+		}
+
+		.card:hover{
+			border-color: rgb(250, 204, 211);
+			border-width: 2px;
+		}
+
+		#parent_main_contents .items .card button{
+			background: black;
+			color: white;
+		}
+
+		#parent_main_contents #add{
+			background-image: url("../assets/add.jpg");
+			height: 350px;
+			margin: 0px;
+			padding: 0px;
+			color: #585353;
+		}
+
+		#parent_main_contents #add #add_contents{
+			background-color: rgba(253, 234, 237, .5);
+			height: inherit;
+			text-align: center;
+			padding-top: 29px;
+		}
+
+		#parent_main_contents #add #add_contents h1,h2{
+			font-size: 270%;
+
+		}
+
+		#parent_main_contents #add #add_contents h1{
+			margin-top: 100px;
+			
+		}
+
+		#parent_main_contents #add #add_contents h2, h1{
+			color: rgba(0 ,0, 0, .7);
+		}
+
+		#parent_main_contents #add #add_contents h2 span{
+			color: black;
+			font-weight: bold;
+			font-size: 120%;
+		}
+
+		.was{
+			text-decoration: line-through;
 		}
 
 		
+		
+
 	</style>
-</head>
-<body>
-
-
-	<div id="bg">
-
-		<div id="blur">
-			<h1>Welcome to My Page</h1>
-			
-		</div>
 	
-	</div>
+</head>
+	<body>
+		<app-preload *ngIf="isloading"></app-preload>
+		<app-navigation></app-navigation>
+		<div id="parent_intro">
+			<div class="sub_parent">
+				<div id="intro">
+					<div class="welcome">
+						<h1>Feed Your Skin With The Best</h1>
+					</div>
 
-</body>
+					<div class="welcome">
+						<p>Good looking skin is what everyone admires. It’s time to feed your skin and We are here for your skin</p>
+						<button mat-flat-button >Browse Our Products...</button>
+					</div>
+				</div>
+
+				
+			</div>
+
+			<div id="about">
+				<div id="wrapper">
+					<div id="who" class="abt"><span>Who We Are</span></div>
+						<div id="summ" class="abt"><p>OSMA is cosmetic company that elevates, enable, approve, and eventually assemble confidence in ladies around the globe through astounding items that empower both inward and external beauty and otherworldly edification while additionally giving chances to self-improvement and budgetary reward.
+						</p>
+
+						<br>
+						<button mat-flat-button >Read More...</button>
+					</div>
+					
+
+				</div>
+			</div>
+
+		</div>
+
+		<div id="parent_main_contents">
+			<div class="items">
+
+				<mat-tab-group mat-align-tabs="start">
+				  <mat-tab color="accent" class="tabs" label="ALL">
+
+				  	<mat-card class="card" *ngFor="let product of getListProducts()">
+					  <img mat-card-image src="{{product.data.url}}">
+					  <mat-card-content>
+					    	<span>{{product.data.name}}</span><span><strong style="float: right;">{{product.data.price | currency:'R'}}</strong></span>
+					  </mat-card-content>
+					  <mat-card-actions>
+
+<!-- This is where you have to start paying your full attention -->
+
+<!-- Below is a button that add a product to the cart -->
+<!-- The button calls addToCart method -->
+
+<!-- The mothod accepts product object as parameter -->
+<!-- The product object is on ngFor directive on mat-card at the top -->
+
+					    <button mat-button (click)="addToCart(product)">ADD TO CART</button>
+					  </mat-card-actions>
+					</mat-card>
+
+				  </mat-tab>
+
+				  <mat-tab class="tabs" label="FACE WASH/LOTION">
+				  	<mat-card class="card" *ngFor="let product of getListCosmetics()">
+					  <img mat-card-image src="{{product.data.url}}">
+					  <mat-card-content>
+					    	<span>{{product.data.name}}</span><span><strong style="float: right;">{{product.data.price | currency:'R'}}</strong></span>
+					  </mat-card-content>
+					  <mat-card-actions>
+					    <button mat-button (click)="addToCart(product)">ADD TO CART</button>
+					  </mat-card-actions>
+					</mat-card>
+
+				  </mat-tab>
+
+				  <mat-tab class="tabs" label="MAKEUPS">
+				  	<mat-card class="card" *ngFor="let product of getListMakeups()">
+					  <img mat-card-image src="{{product.data.url}}">
+					  <mat-card-content>
+					    	<span>{{product.data.name}}</span><span><strong style="float: right;">{{product.data.price | currency:'R'}}</strong></span>
+					  </mat-card-content>
+					  <mat-card-actions>
+					    <button mat-button (click)="addToCart(product)">ADD TO CART</button>
+					  </mat-card-actions>
+					</mat-card>
+
+				  </mat-tab>
+				</mat-tab-group>
+			
+			</div>
+
+			<div id="add">
+				<div id="add_contents">
+					<h1>Shave Time. Shave Money</h1>
+					<h2><span>25%</span> Off</h2>
+				</div>
+				
+			</div>
+				
+		</div>
+
+
+		
+		
+	</body>
 </html>
+
+
 
 
 

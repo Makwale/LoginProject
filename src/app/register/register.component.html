@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		div{
+			width: 60%;
+			margin: auto;
+			text-align: center;
+			padding-top: 100px;
+		}
+
+		form{
+			width: 70%;
+			margin: auto;
+		}
+
+		.int, button{
+			width: 95%;
+		}
+
+		button{
+			background-color: lightgreen;
+			color: black;
+			margin-bottom: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<app-navigation></app-navigation>
+	<div>
+		<h1 style="color: #585353"><b>Create Account</b></h1>
+		<span *ngIf="isAccountCreated" style="color: green; padding: 4px 50px;background-color: rgba(152, 251, 152, .5)">User registered successfully</span>
+		<form ngForm="regFormGroup">
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>First Name</mat-label>
+				<input [formControl]="formControlFName" type="text" required matInput>
+			</mat-form-field>
+
+			<br>
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>Last Name</mat-label>
+				<input  [formControl]="formControlLName" type="text" required matInput>
+			</mat-form-field>
+
+			<br>
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>Phone Number</mat-label>
+				<input  [formControl]="formControlPhone" type="tel" matInput required>
+			</mat-form-field>
+
+			<br>
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>Email</mat-label>
+				<input  [formControl]="formControlEmail" type="email" matInput required>
+			</mat-form-field>
+
+			<br>
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>Password</mat-label>
+				<input  [formControl]="formControlPassword" type="password" matInput required>
+			</mat-form-field>
+
+			<br>
+			<mat-form-field appearance="outline" class="int">
+				<mat-label>Confirm Password</mat-label>
+				<input  [formControl]="formControlCPassword" type="password" matInput required>
+			</mat-form-field>
+
+			<button mat-raised-button (click)="register()">REGISTER</button>
+		</form>
+	</div>
+
+</body>
+</html>

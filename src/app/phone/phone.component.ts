@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormControl, Validators, FormGroupDirective, NgForm} from '@angular/forms';
+import {MatDialogRef} from '@angular/material/dialog';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
@@ -20,7 +21,8 @@ export class PhoneComponent implements OnInit {
   	confirmationResult;
   	error;
 	constructor(private authService: AuthService,
-	 private angularFrAuth: AngularFireAuth, private router: Router ) {
+	 private angularFrAuth: AngularFireAuth, private router: Router,
+	 private dialogRef: MatDialogRef<PhoneComponent> ) {
 		
 	}
 
@@ -45,8 +47,9 @@ export class PhoneComponent implements OnInit {
 	verifyOTP(){
 
 		this.authService.confirmOTP(this.otpControl.value, this.confirmationResult).then(userCredentials => {
-  
-  			this.router.navigateByUrl('home')
+  			this.authService.setLoginState(true);
+  			this.dialogRef.close('');
+  			this.router.navigateByUrl('')
   
 		}).catch(error => {
 			this.error = error;
